@@ -31,8 +31,14 @@ class ModelList(ReadOnlyModelViewSet):
 
 
 class GlassList(ReadOnlyModelViewSet):
-    queryset = Glass.objects.order_by("name")
     serializer_class = GlassSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['car', 'model']
+
+    def get_queryset(self):
+        queryset = Glass.objects.order_by("name")
+        carname = self.request.GET.get('search')
+        if carname is not None:
+            queryset = Glass.objects.filter(car__name__icontains=carname)
+        return queryset

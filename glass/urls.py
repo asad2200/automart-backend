@@ -7,7 +7,7 @@ router = DefaultRouter()
 router.register('companys', CompanyList)
 router.register('cars', CarList)
 router.register('models', ModelList)
-router.register('glass-list', GlassList)
+router.register('glass-list', GlassList, 'glass-detail')
 
 urlpatterns = [
     path("", include(router.urls))
