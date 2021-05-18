@@ -40,5 +40,5 @@ class GlassList(ReadOnlyModelViewSet):
         queryset = Glass.objects.order_by("name")
         carname = self.request.GET.get('search')
         if carname is not None:
-            queryset = Glass.objects.filter(car__name__icontains=carname)
+            queryset = Glass.objects.filter(car__name__icontains=carname.lower())
         return queryset
