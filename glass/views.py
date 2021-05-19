@@ -1,3 +1,4 @@
+from glass.pagination import GlassListPagination
 from django.db.models import query
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from .models import Company, Car, Model, Glass
@@ -35,10 +36,12 @@ class GlassList(ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['car', 'model']
+    pagination_class = GlassListPagination
 
     def get_queryset(self):
         queryset = Glass.objects.order_by("name")
         carname = self.request.GET.get('search')
         if carname is not None:
-            queryset = Glass.objects.filter(car__name__icontains=carname.lower())
+            queryset = Glass.objects.filter(
+                car__name__icontains=carname.lower())
         return queryset
