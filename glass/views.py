@@ -1,5 +1,4 @@
 from glass.pagination import GlassListPagination
-from django.db.models import query
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from .models import Company, Car, Model, Glass
 from .serializers import CompanySerializer, CarSerializer, GlassSerializer, ModelSerializer
@@ -36,7 +35,7 @@ class GlassList(ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['car', 'model']
-    pagination_class = GlassListPagination
+    # pagination_class = GlassListPagination
 
     def get_queryset(self):
         queryset = Glass.objects.order_by("name")

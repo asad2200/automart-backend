@@ -1,6 +1,7 @@
 # AutoMart
 
-## API Backend for Automart 
+## API Backend for Automart
+
     - API is only readable
 
 ---
@@ -9,7 +10,7 @@
 
 ---
 
-- `/glass/company/` - give all companys
+- `/glass/companys/` - give all companys
 - `/glass/cars/` - give all cars
 - `/glass/models/` - give all models
 - `/glass/glass-list/` - give all glass
@@ -18,3 +19,6 @@
 - `/glass/models/?car="id"` - filter models by car id
 - `/glass/glass-list/?car="id"&model="id"` - filter glass by car id and model id
 - `/glass/glass-list/?search="car-name"` - filter glass by car name
+
+- `/autoparts/items/?car="carname"` - filter autoparts items by car name
+- `/autoparts/items/?item="itemname"` - filter autoparts items by item name
